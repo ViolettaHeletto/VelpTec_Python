@@ -15,3 +15,41 @@
 
 # g) Gib am Ende des Programms das erstellte Dictionary aus. 
 
+import random, math
+
+def erzeuge_zufallszahlen_liste(n):
+    zufallszahlen_liste = [random.randint(1, 100) for _ in range(n)]
+    return zufallszahlen_liste
+
+def berechne_wurzeln(liste):
+    wurzel_list = [math.sqrt(x) for x in liste if x >= 0]
+    return wurzel_list
+
+def sortiere_und_erzeuge_tupel(liste):
+    paar_list = [(zahl, math.sqrt(zahl)) for zahl in liste]
+    paar_list.sort(key=lambda x: x[1])
+    return paar_list
+
+def erstelle_dictionary(tupel_liste):
+    return {tupel[0]: tupel[1] for tupel in tupel_liste}
+
+lst = [25, 125, 121, 64, 9, 16]
+print(lst)
+print(sortiere_und_erzeuge_tupel(lst))
+print(erstelle_dictionary(sortiere_und_erzeuge_tupel(lst)))
+
+
+
+def main():                                       # ← вот она
+    zahlen = erzeuge_zufallszahlen_liste(10)
+    wurzeln = berechne_wurzeln(zahlen)
+    tupel_liste = sortiere_und_erzeuge_tupel(zahlen)
+    dict_ = erstelle_dictionary(tupel_liste)
+    print("Zahlen:      ", zahlen)
+    print("Wurzeln:     ", wurzeln)
+    print("Tupel-Liste: ", tupel_liste)
+    print("Dictionary:  ", dict_)
+
+
+if __name__ == "__main__":                        # ← и вот
+    main()
