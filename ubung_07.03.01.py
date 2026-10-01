@@ -49,7 +49,6 @@ def main():                                       # ← вот она
     print("Wurzeln:     ", wurzeln)
     print("Tupel-Liste: ", tupel_liste)
     print("Dictionary:  ", dict_)
-
-
+    
 if __name__ == "__main__":                        # ← и вот
     main()
