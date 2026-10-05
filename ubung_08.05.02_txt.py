@@ -6,15 +6,17 @@
 
 # c) Implementiere eine einfache Fehlerbehandlung in beiden Funktionen, um den Fall zu behandeln, dass die Datei nicht geöffnet oder gefunden werden kann. Gib in diesem Fall eine entsprechende Fehlermeldung aus. 
 
-
-def speichere_daten(studenten):
+def speichere_daten(tupel_studenten):
     try:
-        with open('studentendaten.txt', 'w') as datei:
-            for student in studenten:
-                zeile = f"Name: {student[0]}, Matrikelnummer: {student[1]}, Studiengang: {student[2]}\n"
-                datei.write(zeile)
-    except IOError:
-        print("Fehler beim Speichern der Datei.")
+        with open('studentendaten.txt', 'w') as stream:
+            for student in tupel_studenten:
+                zeile = f'Name: {student[0]}, Matrikelnummer: {student[1]}, Studiengang: {student[2]}\n'
+                stream.write(zeile)
+    except OSError as e:                       # проблемы с файлами/диском
+        print(f"Fehler beim Speichern: {e}")
+    except (TypeError, ValueError) as e:       # проблемы с данными
+        print(f"Ungültige Daten: {e}")
+
 
 
 def lade_daten():
